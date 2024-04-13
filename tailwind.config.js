@@ -1,3 +1,5 @@
+import { blackA, green, grass, mauve } from '@radix-ui/colors'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -15,6 +17,10 @@ export default {
         'light-grey': '#F4F6FA',
         green: '#26D782',
         red: '#EE5454',
+        ...blackA,
+        ...green,
+        ...grass,
+        ...mauve,
       },
       backgroundImage: {
         'mobile-dark': "url('/images/pattern-background-mobile-dark.svg')",
