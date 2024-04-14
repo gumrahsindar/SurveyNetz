@@ -1,16 +1,16 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-import { Icon } from '@iconify/vue'
-
 import ComboBox from '../components/ui/ComboBox.vue'
 import Select from '../components/ui/Select.vue'
+import QuestionsView from './QuestionsView.vue'
 
 const experience = ref()
 const instruments = ref([])
 const instrument = ['Piano', 'Guitar', 'Violin', 'Drums']
 const age = ref('')
 const error = ref(false)
+const hideHome = ref(false)
 
 // form controller
 const isFormValid = computed(() => {
@@ -37,13 +37,18 @@ const handleFormSubmit = () => {
     age: age.value,
   }
 
+  hideHome.value = true
   error.value = false
   console.log(homeFormData.value)
 }
 </script>
 
 <template>
-  <section id="section" class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-between lg:gap-y-0">
+  <section
+    v-if="!hideHome"
+    id="home"
+    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-between lg:gap-y-0"
+  >
     <!-- Welcome  -->
     <div class="max-w-[35ch]">
       <h1 class="mb-4 text-4xl font-light leading-normal md:text-5xl lg:text-6xl">
@@ -56,8 +61,8 @@ const handleFormSubmit = () => {
       <div class="flex flex-col justify-between gap-1">
         <label for="name">Muzik egitiminiz nedir?</label>
         <Select v-model="experience" />
-        <label for="email" class="mt-6">Hangi enstrumanlari calabiliyorsunuz?</label>
 
+        <label for="email" class="mt-6">Hangi enstrumanlari calabiliyorsunuz?</label>
         <ComboBox v-model="instruments" :options="instrument" />
         <small v-if="instruments.length > 0" class="-mt-1 ml-1">
           Seçilenler:
@@ -73,18 +78,20 @@ const handleFormSubmit = () => {
           max="100"
           id="age"
           name="age"
-          class="w-full rounded-md px-4 py-2 text-sm outline-purple placeholder:text-black/30"
+          class="w-full rounded-md px-4 py-2 text-sm outline-purple placeholder:text-black/30 dark:text-dark-blue"
           placeholder="Lütfen yaşınızı girin"
-          required
         />
-        <small v-if="error" class="text-red">Lütfen tüm alanları doldurun.</small>
-        <button
-          type="submit"
-          class="btn mt-6 w-full cursor-pointer rounded-lg bg-purple px-4 py-3 text-lg text-white duration-200 hover:bg-purple/50"
-        >
-          Ankete Başla
-        </button>
+        <div class="mt-6">
+          <small v-show="error" class="text-middleRed">Lütfen tüm alanları doldurun.</small>
+          <button
+            type="submit"
+            class="btn w-full cursor-pointer rounded-lg bg-purple px-4 py-3 text-lg text-white duration-200 hover:bg-purple/50"
+          >
+            Ankete Başla
+          </button>
+        </div>
       </div>
     </form>
   </section>
+  <QuestionsView v-if="hideHome" />
 </template>
