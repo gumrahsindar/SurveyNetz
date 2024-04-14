@@ -1,7 +1,17 @@
 <script setup>
 import { SwitchRoot, SwitchThumb } from 'radix-vue'
-import { ref } from 'vue'
-const switchState = ref(false)
+import { ref, watch } from 'vue'
+
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+const switchState = ref(prefersDarkScheme)
+
+watch(switchState, (newState) => {
+  if (newState) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+})
 </script>
 
 <template>
@@ -9,7 +19,7 @@ const switchState = ref(false)
     <!-- logo -->
     <div class="flex items-center gap-2">
       <img src="/images/icon-accessibility.svg" alt="logo" />
-      <h1>MakamNetx</h1>
+      <h1>MakamNetz</h1>
     </div>
     <!-- dark mode -->
     <div class="flex items-center gap-4">
@@ -20,10 +30,10 @@ const switchState = ref(false)
       <SwitchRoot
         id="dark-light-mode"
         v-model:checked="switchState"
-        class="bg-purple data-[state=checked]:bg-purple focus-within:outline-purple relative flex h-[25px] w-[42px] cursor-default rounded-full shadow-sm"
+        class="relative flex h-[22px] w-[40px] cursor-default rounded-full bg-purple shadow-sm focus-within:outline-purple data-[state=checked]:bg-purple"
       >
         <SwitchThumb
-          class="my-auto block h-[21px] w-[21px] translate-x-0.5 rounded-full bg-white shadow-sm transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[19px]"
+          class="my-auto block h-[18px] w-[18px] translate-x-0.5 rounded-full bg-white shadow-sm transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[19px]"
         />
       </SwitchRoot>
       <img :src="switchState ? '/images/icon-moon-light.svg' : '/images/icon-moon-dark.svg'" alt="dark mode icon" />

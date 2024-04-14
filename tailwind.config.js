@@ -3,6 +3,7 @@ import { blackA, green, grass, mauve } from '@radix-ui/colors'
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  darkMode: 'selector',
   theme: {
     fontFamily: {
       rubik: ['Rubik', 'sans-serif'],
@@ -16,7 +17,7 @@ export default {
         'light-blue': '#ABC1E1',
         'light-grey': '#F4F6FA',
         green: '#26D782',
-        red: '#EE5454',
+        middleRed: '#EE5454',
         ...blackA,
         ...green,
         ...grass,
