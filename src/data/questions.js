@@ -32,4 +32,15 @@ export const questions = [
     image2: '/scores/dugah_buselik.png',
     audio2: '/records/DugahBuselik.mp3',
   },
+  {
+    id: 'soru4',
+    root1: 'Dügah',
+    pow1: 'Kürdi',
+    image1: '/scores/dugah_kurdi.png',
+    audio1: '/records/DugahKurdi.mp3',
+    root2: 'Dügah',
+    pow2: 'Buselik',
+    image2: '/scores/dugah_buselik.png',
+    audio2: '/records/DugahBuselik.mp3',
+  }
 ]

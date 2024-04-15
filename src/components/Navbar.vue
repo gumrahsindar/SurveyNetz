@@ -15,7 +15,7 @@ watch(switchState, (newState) => {
 </script>
 
 <template>
-  <header class="mx-6 flex items-center justify-between py-4 md:mx-0 md:py-10 lg:py-20">
+  <header class="mx-6 flex items-center justify-between py-4 md:mx-0 md:py-10">
     <!-- logo -->
     <div class="flex items-center gap-2">
       <img src="/images/icon-accessibility.svg" alt="logo" />

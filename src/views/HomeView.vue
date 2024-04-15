@@ -45,9 +45,9 @@ const handleFormSubmit = () => {
 
 <template>
   <section
-    v-if="!hideHome"
+    v-show="!hideHome"
     id="home"
-    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-between lg:gap-y-0"
+    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-around lg:gap-y-0"
   >
     <!-- Welcome  -->
     <div class="max-w-[35ch]">
@@ -93,5 +93,5 @@ const handleFormSubmit = () => {
       </div>
     </form>
   </section>
-  <QuestionsView v-if="hideHome" />
+  <QuestionsView v-show="hideHome" />
 </template>
