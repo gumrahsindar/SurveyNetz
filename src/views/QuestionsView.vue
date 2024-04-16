@@ -10,6 +10,8 @@ import SubmitView from "@/views/SubmitView.vue";
 
 library.add(faPlay, faPause, faVolumeHigh, faArrowsUpDown, faArrowsLeftRight)
 
+const props = defineProps(['homeFormData'])
+
 const isPlaying = ref([false, false])
 const audioRefs = reactive(questions.map(() => [ref(null), ref(null)]))
 
@@ -124,6 +126,7 @@ const handleLastQuestionAnswered = () => {
             @last-question-answered="handleLastQuestionAnswered"
             :nextQuestion="nextQuestion" :currentQuestionIndex="currentQuestionIndex" :questions="questions"
             v-show="!showSubmit"
+            :homeFormData="homeFormData"
         />
       </div>
     </section>

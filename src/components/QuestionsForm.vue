@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-const props = defineProps(['nextQuestion', 'currentQuestionIndex', 'questions'])
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {db} from "@/db/firebase.js";
+
+const props = defineProps(['nextQuestion', 'currentQuestionIndex', 'questions', 'homeFormData'])
 
 const vote = ref('')
 const error = ref(false)
@@ -9,17 +12,34 @@ const answers = ref([])
 
 const emit = defineEmits(['last-question-answered'])
 
-const handleSubmit = () => {
+const handleSubmit = async (e) => {
+  e.preventDefault()
   error.value = false
   if (!vote.value) {
     error.value = true
     return
   }
   answers.value.push(vote.value)
-  console.log(answers.value)
+
   if (props.currentQuestionIndex === props.questions.length - 1) {
     emit('last-question-answered')
+
+    // Combine homeFormData and answers into one object
+    const surveyData = {
+      ...props.homeFormData,
+      answers: answers.value,
+      createdAt: serverTimestamp(),
+    }
+
+    // Add the survey data to the 'answers' collection in Firestore
+    try {
+      await addDoc(collection(db, "answers"), surveyData);
+      console.log("Survey submitted successfully.");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
+
   vote.value = ''
 }
 

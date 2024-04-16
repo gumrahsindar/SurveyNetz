@@ -39,7 +39,6 @@ const handleFormSubmit = () => {
 
   hideHome.value = true
   error.value = false
-  console.log(homeFormData.value)
 }
 </script>
 
@@ -59,10 +58,9 @@ const handleFormSubmit = () => {
     <!-- Form -->
     <form @submit.prevent="handleFormSubmit" class="w-full max-w-[35ch] text-sm md:text-base lg:text-lg">
       <div class="flex flex-col justify-between gap-1">
-        <label for="name">Muzik egitiminiz nedir?</label>
-        <Select v-model="experience" />
-
-        <label for="email" class="mt-6">Hangi enstrumanlari calabiliyorsunuz?</label>
+        <p>Muzik egitiminiz nedir?</p>
+        <Select id="name" v-model="experience" />
+        <p class="mt-6">Hangi enstrumanlari calabiliyorsunuz?</p>
         <ComboBox v-model="instruments" :options="instrument" />
         <small v-if="instruments.length > 0" class="-mt-1 ml-1">
           Seçilenler:
@@ -93,5 +91,5 @@ const handleFormSubmit = () => {
       </div>
     </form>
   </section>
-  <QuestionsView v-show="hideHome" />
+  <QuestionsView v-show="hideHome" :homeFormData="homeFormData" />
 </template>

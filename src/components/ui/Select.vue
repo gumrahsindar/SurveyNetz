@@ -27,7 +27,7 @@ const experienceModel = defineModel()
       class="inline-flex h-[35px] w-full min-w-[160px] items-center justify-between gap-[5px] rounded-md bg-white px-[15px] font-rubik text-sm leading-none text-purple shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-purple data-[placeholder]:text-black/30"
       aria-label="Customise options"
     >
-      <SelectValue placeholder="Lütfen bir seçim yapın" />
+      <SelectValue  placeholder="Lütfen bir seçim yapın" />
       <Icon icon="radix-icons:chevron-down" class="h-5 w-5 text-purple" />
     </SelectTrigger>
 
