@@ -7,6 +7,7 @@ import { questions } from '@/data/questions.js'
 import QuestionsForm from '@/components/QuestionsForm.vue'
 import { useWindowSize } from '@vueuse/core'
 import SubmitView from "@/views/SubmitView.vue";
+import ProgressBar from "@/components/ui/ProgressBar.vue";
 
 library.add(faPlay, faPause, faVolumeHigh, faArrowsUpDown, faArrowsLeftRight)
 
@@ -44,19 +45,30 @@ const showSubmit = ref(false)
 const handleLastQuestionAnswered = () => {
   showSubmit.value = true
 }
+
+let progress = ref(0)
+
+const handleQuestionAnswered = () => {
+  progress.value = ((currentQuestionIndex.value )/ (questions.length - 1)) * 100;
+};
 </script>
 
 <template>
   <div>
-    <section class="questions"
-             v-show="!showSubmit"
-    >
+    <section v-show="!showSubmit" class="container">
       <!-- progress bar here -->
-      <div class="progress-bar">
-        <div class="progress">progress bar</div>
+      <div class="flex space-x-4 lg:space-x-10 items-center justify-center mb-8 lg:mb-16">
+        <div>
+          <h1 class="text-xl font-semibold text-center">
+            #{{ currentQuestionIndex }}/{{ questions.length - 1 }}
+          </h1>
+        </div>
+        <div>
+          <ProgressBar v-model="progress" />
+        </div>
       </div>
       <!-- questions and answers -->
-      <div class="container mx-auto">
+      <div>
         <article>
           <!-- question -->
           <h2 class="text-balance text-center font-bold leading-relaxed tracking-wide text-lg md:text-xl lg:text-2xl">
@@ -78,13 +90,13 @@ const handleLastQuestionAnswered = () => {
                 }}<sup class="font-normal italic">{{ questions[currentQuestionIndex].pow1 }}</sup>
               </h3>
               <img class="mt-4 h-36 w-full rounded-2xl shadow-xl" :src="questions[currentQuestionIndex].image1" alt="" />
-              <audio :ref="audioRefs[currentQuestionIndex][0]" @ended="isPlaying[0] = false">
+              <audio :key="questions[currentQuestionIndex].id" :ref="audioRefs[currentQuestionIndex][0]" @ended="isPlaying[0] = false">
                 <source :src="questions[currentQuestionIndex].audio1" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
               <button aria-label="play/pause" @click="togglePlayPause(currentQuestionIndex, 0)">
                 <font-awesome-icon
-                    class="text-dark-grey mt-4 lg:mt-8 h-16 w-16 cursor-pointer fill-current lg:scale-150 md:scale-125"
+                    class="text-dark-grey mt-4 lg:mt-8 h-16 w-16 cursor-pointer fill-current md:scale-125"
                     :icon="isPlaying[0] ? 'pause' : 'volume-high'"
                 />
               </button>
@@ -109,13 +121,13 @@ const handleLastQuestionAnswered = () => {
                 }}<sup class="font-normal italic">{{ questions[currentQuestionIndex].pow2 }}</sup>
               </h3>
               <img class="mt-4 h-36 w-full rounded-2xl shadow-xl" :src="questions[currentQuestionIndex].image2" alt="" />
-              <audio :ref="audioRefs[currentQuestionIndex][1]" @ended="isPlaying[1] = false">
+              <audio :key="questions[currentQuestionIndex].id" :ref="audioRefs[currentQuestionIndex][1]" @ended="isPlaying[1] = false">
                 <source :src="questions[currentQuestionIndex].audio2" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
               <button aria-label="play/pause" @click="togglePlayPause(currentQuestionIndex, 1)">
                 <font-awesome-icon
-                    class="text-dark-grey lg:mt-8 h-16 w-16 cursor-pointer fill-current lg:scale-150 md:scale-125"
+                    class="text-dark-grey lg:mt-8 h-16 w-16 cursor-pointer fill-current md:scale-125"
                     :icon="isPlaying[1] ? 'pause' : 'volume-high'"
                 />
               </button>
@@ -123,6 +135,7 @@ const handleLastQuestionAnswered = () => {
           </div>
         </article>
         <QuestionsForm
+            @question-answered="handleQuestionAnswered"
             @last-question-answered="handleLastQuestionAnswered"
             :nextQuestion="nextQuestion" :currentQuestionIndex="currentQuestionIndex" :questions="questions"
             v-show="!showSubmit"

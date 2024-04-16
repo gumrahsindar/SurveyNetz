@@ -28,7 +28,7 @@ const instrumentsModel = defineModel()
       class="inline-flex h-[35px] w-full min-w-[160px] items-center justify-between gap-[5px] rounded-md bg-white px-[15px] text-[13px] text-sm leading-none text-purple shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-purple data-[placeholder]:text-purple md:text-base lg:text-lg"
     >
       <ComboboxInput
-        class="h-full !bg-transparent text-purple outline-none selection:bg-white placeholder:text-sm placeholder:text-black/30"
+        class="h-full !bg-transparent text-purple outline-none selection:bg-white placeholder:text-sm placeholder:text-black/30 "
         placeholder="Lütfen bir seçim yapın"
       />
       <ComboboxTrigger>
@@ -46,7 +46,7 @@ const instrumentsModel = defineModel()
           <ComboboxItem
             v-for="(option, index) in props.options"
             :key="index"
-            class="relative flex h-[25px] select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-[13px] leading-none text-purple data-[disabled]:pointer-events-none data-[highlighted]:bg-purple/80 data-[disabled]:text-mauve8 data-[highlighted]:text-grass1 data-[highlighted]:outline-none"
+            class="relative flex h-[25px] select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-[13px] md:text-base leading-none text-purple data-[disabled]:pointer-events-none data-[highlighted]:bg-purple/80 data-[disabled]:text-mauve8 data-[highlighted]:text-grass1 data-[highlighted]:outline-none"
             :value="option"
           >
             <ComboboxItemIndicator class="absolute left-0 inline-flex w-[25px] items-center justify-center">

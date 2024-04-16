@@ -46,7 +46,7 @@ const handleFormSubmit = () => {
   <section
     v-show="!hideHome"
     id="home"
-    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-around lg:gap-y-0"
+    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-around lg:gap-y-0 mt-10 lg:mt-20"
   >
     <!-- Welcome  -->
     <div class="max-w-[35ch]">
@@ -58,13 +58,13 @@ const handleFormSubmit = () => {
     <!-- Form -->
     <form @submit.prevent="handleFormSubmit" class="w-full max-w-[35ch] text-sm md:text-base lg:text-lg">
       <div class="flex flex-col justify-between gap-1">
-        <p>Muzik egitiminiz nedir?</p>
+        <p>Müzik eğitiminiz nedir?</p>
         <Select id="name" v-model="experience" />
-        <p class="mt-6">Hangi enstrumanlari calabiliyorsunuz?</p>
+        <p class="mt-6">En iyi çaldığınız enstrüman/enstrümanlar?</p>
         <ComboBox v-model="instruments" :options="instrument" />
-        <small v-if="instruments.length > 0" class="-mt-1 ml-1">
+        <small v-if="instruments.length > 0" class=" ml-1 text-sm md:text-base lg:text-lg">
           Seçilenler:
-          <span class="italic">
+          <span class="italic underline">
             {{ instruments.join(', ') }}
           </span>
         </small>
@@ -76,7 +76,7 @@ const handleFormSubmit = () => {
           max="100"
           id="age"
           name="age"
-          class="w-full rounded-md px-4 py-2 text-sm outline-purple placeholder:text-black/30 dark:text-dark-blue"
+          class="w-full rounded-md px-4 py-2 text-sm md:text-base outline-purple placeholder:text-black/30 dark:text-dark-blue"
           placeholder="Lütfen yaşınızı girin"
         />
         <div class="mt-6">

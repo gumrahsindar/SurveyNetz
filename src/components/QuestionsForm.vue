@@ -10,7 +10,7 @@ const error = ref(false)
 
 const answers = ref([])
 
-const emit = defineEmits(['last-question-answered'])
+const emit = defineEmits(['last-question-answered', 'question-answered'])
 
 const handleSubmit = async (e) => {
   e.preventDefault()
@@ -43,14 +43,22 @@ const handleSubmit = async (e) => {
     window.scrollTo(0, 0);
   }
 
+  emit('question-answered')
+
   vote.value = ''
 }
 
 </script>
 
 <template>
-  <form class="my-20" @submit.prevent="handleSubmit">
+  <form class="mt-10 mb-20" @submit.prevent="handleSubmit">
     <!-- vote for 1 to 5 with radio buttons -->
+    <p
+        v-if="error"
+        class="text-middleRed text-center mb-4 block"
+    >
+      Lütfen bir seçim yapın.
+    </p>
     <div class="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8">
       <label
         class="cursor-pointer rounded-lg bg-blue-400 px-10 py-2 text-blue-50 md:text-lg lg:text-2xl"
@@ -87,17 +95,11 @@ const handleSubmit = async (e) => {
         <input class="sr-only" type="radio" name="vote" value="5" v-model="vote" />
         5
       </label>
-      <p
-        v-if="error"
-        class="text-middleRed text-center mt-4 block"
-      >
-        Lütfen bir seçim yapın.
-      </p>
     </div>
     <div class="mt-10 w-full text-center lg:text-right">
       <button
         @click="vote && props.nextQuestion()"
-        class="cursor-pointer rounded-lg bg-purple px-4 py-3 text-lg text-white duration-200 hover:bg-purple/50"
+        class="cursor-pointer rounded-lg bg-purple px-4 py-3 text-lg text-white duration-200 hover:bg-purple/50 lg:text-2xl lg:px-8 lg:py-4"
         type="submit"
       >
         {{ props.currentQuestionIndex < questions.length - 2 ? 'Kaydet ve Devam Et' : 'Anketi Gönder' }}

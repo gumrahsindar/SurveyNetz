@@ -19,7 +19,7 @@ watch(switchState, (newState) => {
     <!-- logo -->
     <div class="flex items-center gap-2">
       <img src="/images/icon-accessibility.svg" alt="logo" />
-      <h1>MakamNetz</h1>
+      <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl">MakamNetz</h1>
     </div>
     <!-- dark mode -->
     <div class="flex items-center gap-4">
