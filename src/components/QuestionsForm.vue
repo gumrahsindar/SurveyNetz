@@ -38,6 +38,9 @@ const handleSubmit = async (e) => {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+  } else {
+    // User clicked "Save and Continue", scroll to top of page
+    window.scrollTo(0, 0);
   }
 
   vote.value = ''
