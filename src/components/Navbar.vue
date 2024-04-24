@@ -15,14 +15,14 @@ watch(switchState, (newState) => {
 </script>
 
 <template>
-  <header class="mx-6 flex items-center justify-between py-4 md:mx-0 md:py-10">
+  <header class="mx-6 flex items-center justify-between pb-8 pt-4 md:mx-0 lg:pt-10">
     <!-- logo -->
     <div class="flex items-center gap-2">
       <img src="/images/icon-accessibility.svg" alt="logo" />
-      <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl">MakamNetz</h1>
+      <h1 class="text-2xl font-bold md:text-3xl lg:text-4xl">MakamNetz</h1>
     </div>
     <!-- dark mode -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center space-x-2">
       <label class="sr-only select-none pr-4 text-[15px] leading-none text-white" for="dark-light-mode">
         switch dark/light mode
       </label>

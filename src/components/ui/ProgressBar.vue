@@ -8,7 +8,7 @@ const progressModel = defineModel()
 <template>
   <ProgressRoot
       v-model="progressModel"
-      class="relative overflow-hidden bg-gray-200 rounded-full w-full w-[300px] sm:w-[400px] md:w-[520px] lg:w-[800px] h-4 sm:h-5"
+      class="relative overflow-hidden bg-gray-200 rounded-full w-[280px] sm:w-[400px] md:w-[520px] lg:w-[800px] h-4 sm:h-5"
       style="transform: translateZ(0)"
   >
     <ProgressIndicator

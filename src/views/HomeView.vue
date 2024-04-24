@@ -7,7 +7,25 @@ import QuestionsView from './QuestionsView.vue'
 
 const experience = ref()
 const instruments = ref([])
-const instrument = ['Piano', 'Guitar', 'Violin', 'Drums']
+const instrument = [
+  'Bağlama',
+  'Çello',
+  'Flüt',
+  'Gitar',
+  'Kanun',
+  'Kaval',
+  'Keman',
+  'Kemençe',
+  'Klarnet',
+  'Ney',
+  'Piyano',
+  'Tanbur',
+  'Ud',
+  'Vurmalı Çalgılar',
+  'Zurna',
+  'Diğer (Türk Müziği)',
+  'Diğer (Batı Müziği)',
+]
 const age = ref('')
 const error = ref(false)
 const hideHome = ref(false)
@@ -46,7 +64,7 @@ const handleFormSubmit = () => {
   <section
     v-show="!hideHome"
     id="home"
-    class="flex flex-col justify-start gap-y-10 lg:flex-row lg:justify-around lg:gap-y-0 mt-10 lg:mt-20"
+    class="mt-10 flex flex-col justify-start gap-y-10 lg:mt-20 lg:flex-row lg:justify-around lg:gap-y-0"
   >
     <!-- Welcome  -->
     <div class="max-w-[35ch]">
@@ -60,9 +78,9 @@ const handleFormSubmit = () => {
       <div class="flex flex-col justify-between gap-1">
         <p>Müzik eğitiminiz nedir?</p>
         <Select id="name" v-model="experience" />
-        <p class="mt-6">En iyi çaldığınız enstrüman/enstrümanlar?</p>
+        <p class="mt-6">İcrâ ettiğiniz enstrüman/enstrümanlar?</p>
         <ComboBox v-model="instruments" :options="instrument" />
-        <small v-if="instruments.length > 0" class=" ml-1 text-sm md:text-base lg:text-lg">
+        <small v-if="instruments.length > 0" class="ml-1 text-sm md:text-base lg:text-lg">
           Seçilenler:
           <span class="italic underline">
             {{ instruments.join(', ') }}
@@ -76,7 +94,7 @@ const handleFormSubmit = () => {
           max="100"
           id="age"
           name="age"
-          class="w-full rounded-md px-4 py-2 text-sm md:text-base outline-purple placeholder:text-black/30 dark:text-dark-blue"
+          class="w-full rounded-md px-4 py-2 text-sm outline-purple placeholder:text-black/30 md:text-base dark:text-dark-blue"
           placeholder="Lütfen yaşınızı girin"
         />
         <div class="mt-6">

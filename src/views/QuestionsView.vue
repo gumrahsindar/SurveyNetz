@@ -6,8 +6,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { questions } from '@/data/questions.js'
 import QuestionsForm from '@/components/QuestionsForm.vue'
 import { useWindowSize } from '@vueuse/core'
-import SubmitView from "@/views/SubmitView.vue";
-import ProgressBar from "@/components/ui/ProgressBar.vue";
+import SubmitView from '@/views/SubmitView.vue'
+import ProgressBar from '@/components/ui/ProgressBar.vue'
 
 library.add(faPlay, faPause, faVolumeHigh, faArrowsUpDown, faArrowsLeftRight)
 
@@ -15,7 +15,6 @@ const props = defineProps(['homeFormData'])
 
 const isPlaying = ref([false, false])
 const audioRefs = reactive(questions.map(() => [ref(null), ref(null)]))
-
 
 const currentQuestionIndex = ref(0)
 
@@ -34,11 +33,10 @@ const nextQuestion = () => {
   }
 }
 
-
 // hide arrows on mobile
 const hideArrows = ref(false)
 const { width } = useWindowSize()
-hideArrows.value = width.value < 1024;
+hideArrows.value = width.value < 1024
 
 // hide this page and show submit page when all questions are answered
 const showSubmit = ref(false)
@@ -49,19 +47,17 @@ const handleLastQuestionAnswered = () => {
 let progress = ref(0)
 
 const handleQuestionAnswered = () => {
-  progress.value = ((currentQuestionIndex.value )/ (questions.length - 1)) * 100;
-};
+  progress.value = (currentQuestionIndex.value / (questions.length - 1)) * 100
+}
 </script>
 
 <template>
   <div>
     <section v-show="!showSubmit" class="container">
       <!-- progress bar here -->
-      <div class="flex space-x-4 lg:space-x-10 items-center justify-center mb-8 lg:mb-16">
+      <div class="mb-10 flex items-center justify-center space-x-4 lg:space-x-10">
         <div>
-          <h1 class="text-xl font-semibold text-center">
-            #{{ currentQuestionIndex }}/{{ questions.length - 1 }}
-          </h1>
+          <h1 class="text-center text-xl font-semibold">#{{ currentQuestionIndex + 1 }}/{{ questions.length - 1 }}</h1>
         </div>
         <div>
           <ProgressBar v-model="progress" />
@@ -71,7 +67,7 @@ const handleQuestionAnswered = () => {
       <div>
         <article>
           <!-- question -->
-          <h2 class="text-balance text-center font-bold leading-relaxed tracking-wide text-lg md:text-xl lg:text-2xl">
+          <h2 class="text-balance text-center text-lg font-bold leading-relaxed tracking-wide md:text-xl lg:text-2xl">
             Aşağıda verilen iki Perde<sup class="italic">Çeşni</sup> yapisi arasindaki geçişi dinleyerek, en
             yumuşak/akıcı/kolaydan en sert/ dramatik/zora doğru 1 ile 5 arası bir ölçekte notlandırabilir misiniz?
             <p>
@@ -81,7 +77,7 @@ const handleQuestionAnswered = () => {
           </h2>
           <!-- examples container -->
           <div
-              class="mt-14 flex flex-col items-center space-y-10 text-center lg:flex-row lg:justify-between lg:space-y-0 lg:text-left"
+            class="mt-14 flex flex-col items-center space-y-10 text-center lg:flex-row lg:justify-between lg:space-y-0 lg:text-left"
           >
             <!-- example-1 -->
             <div class="min-w-[35%] text-center">
@@ -89,29 +85,37 @@ const handleQuestionAnswered = () => {
                 {{ questions[currentQuestionIndex].root1
                 }}<sup class="font-normal italic">{{ questions[currentQuestionIndex].pow1 }}</sup>
               </h3>
-              <img class="mt-4 h-36 w-full rounded-2xl shadow-xl" :src="questions[currentQuestionIndex].image1" alt="" />
-              <audio :key="questions[currentQuestionIndex].id" :ref="audioRefs[currentQuestionIndex][0]" @ended="isPlaying[0] = false">
+              <img
+                class="mt-4 h-36 w-full rounded-2xl shadow-xl"
+                :src="questions[currentQuestionIndex].image1"
+                alt=""
+              />
+              <audio
+                :key="questions[currentQuestionIndex].id"
+                :ref="audioRefs[currentQuestionIndex][0]"
+                @ended="isPlaying[0] = false"
+              >
                 <source :src="questions[currentQuestionIndex].audio1" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
               <button aria-label="play/pause" @click="togglePlayPause(currentQuestionIndex, 0)">
                 <font-awesome-icon
-                    class="text-dark-grey mt-4 lg:mt-8 h-16 w-16 cursor-pointer fill-current md:scale-125"
-                    :icon="isPlaying[0] ? 'pause' : 'volume-high'"
+                  class="text-dark-grey mt-4 h-16 w-16 cursor-pointer fill-current md:scale-125"
+                  :icon="isPlaying[0] ? 'pause' : 'volume-high'"
                 />
               </button>
             </div>
             <!-- arrows here -->
             <div>
               <font-awesome-icon
-                  v-show="width < 1024"
-                  class="h-32 w-32 text-purple/20 dark:text-purple/70"
-                  :icon="'arrows-up-down'"
+                v-show="width < 1024"
+                class="h-32 w-32 text-purple/20 dark:text-purple/70"
+                :icon="'arrows-up-down'"
               />
               <FontAwesomeIcon
-                  v-show="width >= 1024"
-                  class="h-40 w-40 text-purple/20 dark:text-purple/70"
-                  :icon="'arrows-left-right'"
+                v-show="width >= 1024"
+                class="h-40 w-40 text-purple/20 dark:text-purple/70"
+                :icon="'arrows-left-right'"
               />
             </div>
             <!-- example-2 -->
@@ -120,26 +124,36 @@ const handleQuestionAnswered = () => {
                 {{ questions[currentQuestionIndex].root2
                 }}<sup class="font-normal italic">{{ questions[currentQuestionIndex].pow2 }}</sup>
               </h3>
-              <img class="mt-4 h-36 w-full rounded-2xl shadow-xl" :src="questions[currentQuestionIndex].image2" alt="" />
-              <audio :key="questions[currentQuestionIndex].id" :ref="audioRefs[currentQuestionIndex][1]" @ended="isPlaying[1] = false">
+              <img
+                class="mt-4 h-36 w-full rounded-2xl shadow-xl"
+                :src="questions[currentQuestionIndex].image2"
+                alt=""
+              />
+              <audio
+                :key="questions[currentQuestionIndex].id"
+                :ref="audioRefs[currentQuestionIndex][1]"
+                @ended="isPlaying[1] = false"
+              >
                 <source :src="questions[currentQuestionIndex].audio2" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
               <button aria-label="play/pause" @click="togglePlayPause(currentQuestionIndex, 1)">
                 <font-awesome-icon
-                    class="text-dark-grey lg:mt-8 h-16 w-16 cursor-pointer fill-current md:scale-125"
-                    :icon="isPlaying[1] ? 'pause' : 'volume-high'"
+                  class="text-dark-grey mt-4 h-16 w-16 cursor-pointer fill-current md:scale-125"
+                  :icon="isPlaying[1] ? 'pause' : 'volume-high'"
                 />
               </button>
             </div>
           </div>
         </article>
         <QuestionsForm
-            @question-answered="handleQuestionAnswered"
-            @last-question-answered="handleLastQuestionAnswered"
-            :nextQuestion="nextQuestion" :currentQuestionIndex="currentQuestionIndex" :questions="questions"
-            v-show="!showSubmit"
-            :homeFormData="homeFormData"
+          @question-answered="handleQuestionAnswered"
+          @last-question-answered="handleLastQuestionAnswered"
+          :nextQuestion="nextQuestion"
+          :currentQuestionIndex="currentQuestionIndex"
+          :questions="questions"
+          v-show="!showSubmit"
+          :homeFormData="homeFormData"
         />
       </div>
     </section>
