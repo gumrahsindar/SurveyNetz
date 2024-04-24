@@ -16,7 +16,7 @@ import {
 } from 'radix-vue'
 import { Icon } from '@iconify/vue'
 
-const experienceOptions = ['Beginner', 'Intermediate', 'Advanced']
+const experienceOptions = ['Müzil Lisesi', 'Konservatuvar', 'Bireysel/Özel Eğitim', 'Yok']
 
 const experienceModel = defineModel()
 </script>
@@ -27,7 +27,7 @@ const experienceModel = defineModel()
       class="inline-flex h-[35px] w-full min-w-[160px] items-center justify-between gap-[5px] rounded-md bg-white px-[15px] font-rubik text-sm leading-none text-purple shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-purple data-[placeholder]:text-black/30"
       aria-label="Customise options"
     >
-      <SelectValue class="md:text-base"  placeholder="Lütfen bir seçim yapın" />
+      <SelectValue class="md:text-base" placeholder="Lütfen bir seçim yapın" />
       <Icon icon="radix-icons:chevron-down" class="h-5 w-5 text-purple" />
     </SelectTrigger>
 
@@ -45,7 +45,7 @@ const experienceModel = defineModel()
             <SelectItem
               v-for="(option, index) in experienceOptions"
               :key="index"
-              class="relative flex h-[25px] select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-[13px] md:text-base leading-none text-purple data-[disabled]:pointer-events-none data-[highlighted]:bg-purple/80 data-[disabled]:text-mauve8 data-[highlighted]:text-green1 data-[highlighted]:outline-none"
+              class="relative flex h-[25px] select-none items-center rounded-[3px] pl-[25px] pr-[35px] text-[13px] leading-none text-purple data-[disabled]:pointer-events-none data-[highlighted]:bg-purple/80 data-[disabled]:text-mauve8 data-[highlighted]:text-green1 data-[highlighted]:outline-none md:text-base"
               :value="option"
               v-model="experienceModel"
             >
