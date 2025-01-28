@@ -22,7 +22,7 @@
 
 ## 🌐 Live Demo  
 
-[Visit PerdeÇeşni](https://surveyapp-bc928.web.app/)  
+[Visit SurveyNetz](https://surveyapp-bc928.web.app/)  
 
 ## 🌟 Lighthouse Score  
 
